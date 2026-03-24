@@ -48,7 +48,7 @@ def proses_teks(text, matkul):
             tugas = line.replace("#Onprogress", "").strip()
         elif '#SelesaiJuga' in line: 
             status = "Selesai"
-            tugas = line.replace("#Onprogress", "").strip()
+            tugas = line.replace("#SelesaiJuga", "").strip()
 
         if status:
             simpan_ke_aiven(tugas, status, matkul)
