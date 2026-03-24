@@ -5,8 +5,8 @@ import requests
 from google.oauth2 import service_account 
 from googleapiclient.discovery import build
 
-TELEGRAM_TOKEN = "8673125788:AAE0TkVzvG0SIl3kJCGLmQUfhrkrMXZLD-s"
-CHAT_ID = "1098028798"
+TELEGRAM_TOKEN = os.environ.get("TELEGRAM_TOKEN")
+CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
 def kirim_notif_telegram(pesan):
     url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
