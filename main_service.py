@@ -35,7 +35,7 @@ def scan_folder():
     
     for item in items:
         print(f"🔍 Scanning: {item['name']}")
-        content = service.files().export(filesId=item['id'],  mimeType='text/plain').execute().decode('utf-8')
+        content = service.files().export(fileId=item['id'],  mimeType='text/plain').execute().decode('utf-8')
         proses_teks(content, item['name'])
         
 def proses_teks(text, matkul):
