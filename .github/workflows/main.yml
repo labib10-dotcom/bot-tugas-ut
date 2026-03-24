@@ -28,4 +28,4 @@ jobs:
           DB_PORT: ${{ secrets.DB_PORT }}
           GDRIVE_FOLDER_ID: ${{ secrets.GDRIVE_FOLDER_ID }}
           GDRIVE_SERVICE_ACCOUNT_JSON: ${{ secrets.GDRIVE_SERVICE_ACCOUNT_JSON }}
-        run: python scripts/main_service.py
+        run: python main_service.py
