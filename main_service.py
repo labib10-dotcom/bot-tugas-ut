@@ -26,7 +26,7 @@ def scan_folder():
     folder_id = os.environ.get("GDRIVE_FOLDER_ID")
 
     query = f"'{folder_id}' in parents and mimeType = 'application/vnd.google-apps.document' and trashed = false"
-    results = service.files().list(q=query, fields="file(id, name)").execute()
+    results = service.files().list(q=query, fields="files(id, name)").execute()
     items = results.get('files', [])
 
     if not items:
@@ -48,7 +48,7 @@ def proses_teks(text, matkul):
             tugas = line.replace("#Onprogress", "").strip()
         elif '#SelesaiJuga' in line: 
             status = "Selesai"
-            tugas = line.replace("#SelesaiJuga", "").strip()
+            tugas = line.replace("#Onprogress", "").strip()
 
         if status:
             simpan_ke_aiven(tugas, status, matkul)
