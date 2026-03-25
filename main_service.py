@@ -41,16 +41,21 @@ def scan_folder():
 def proses_teks(text, matkul):
     lines = text.split('\n')
     for line in lines:
+        clean_line = line.strip()
+        if not clean_line: continue
+
         status = None
+        tugas = ""
 
         if '#Onprogress' in line:
             status = "Onprogress"
-            tugas = line.replace("#Onprogress", "").strip()
+            tugas = clean_line.replace('#')[0].strip()
         elif '#SelesaiJuga' in line: 
             status = "Selesai"
-            tugas = line.replace("#SelesaiJuga", "").strip()
+            tugas = clean_line.replace('#')[0].strip()
 
-        if status:
+        if status and tugas:
+            print(f"🎯 Ketemu Tugas: {tugas} | Status: {status}")
             simpan_ke_aiven(tugas, status, matkul)
 
 def simpan_ke_aiven(tugas, status, matkul):
@@ -59,7 +64,7 @@ def simpan_ke_aiven(tugas, status, matkul):
             "host": os.environ.get("DB_HOST"),
             "user": os.environ.get("DB_USER"),
             "password": os.environ.get("DB_PASS"),
-            "port": int(os.environ.get("DB_PORT", 21890)),
+            "port": int(os.environ.get("DB_PORT") or 21890),
             "database": os.environ.get("DB_NAME")
         }
 
