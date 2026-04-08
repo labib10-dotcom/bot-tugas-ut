@@ -49,10 +49,10 @@ def proses_teks(text, matkul):
 
         if '#Onprogress' in line:
             status = "Onprogress"
-            tugas = clean_line.replace('#')[0].strip()
-        elif '#SelesaiJuga' in line: 
+            tugas = clean_line.split('#')[0].strip()
+        elif '#Selesai' in line: 
             status = "Selesai"
-            tugas = clean_line.replace('#')[0].strip()
+            tugas = clean_line.split('#')[0].strip()
 
         if status and tugas:
             print(f"🎯 Ketemu Tugas: {tugas} | Status: {status}")
